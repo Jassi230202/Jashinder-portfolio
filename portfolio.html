@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="google-site-verification" content="iK6F9mDFxgdj-kAYSpXt-q0N2THzUgzjcpVfJRbqLEo" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JASHINDER KUMAR — Electrical Engineering</title>
+<meta name="description" content="Portfolio of an Electrical Engineering student — circuits, embedded systems, and power electronics projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ---- token system ---- */
+    --bg-0: #0a0b1e;
+    --bg-1: #120a2e;
+    --glass: rgba(255,255,255,0.055);
+    --glass-strong: rgba(255,255,255,0.09);
+    --glass-border: rgba(255,255,255,0.14);
+
+    --electric: #00e5ff;   /* circuit design */
+    --violet:   #a970ff;   /* embedded / code */
+    --magenta:  #ff4fc3;   /* lab & simulation */
+    --amber:    #ffb84d;   /* power electronics / copper */
+    --lime:     #7dffb0;   /* iot */
+
+    --text: #f4f5fb;
+    --text-dim: #a7abcf;
+    --radius: 18px;
+    --radius-sm: 10px;
+    --display: 'Sora', sans-serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: var(--bg-0);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  ::selection{ background:var(--electric); color:#04070f; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  section{ padding:110px 24px; position:relative; }
+  .wrap{ max-width:1080px; margin:0 auto; position:relative; z-index:2; }
+  :focus-visible{ outline:2px solid var(--electric); outline-offset:3px; border-radius:4px; }
+
+  /* ---------- ambient gradient mesh background ---------- */
+  .mesh{ position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .blob{ position:absolute; border-radius:50%; filter:blur(90px); opacity:.55; will-change:transform; }
+  .blob.b1{ width:520px; height:520px; background:radial-gradient(circle, var(--electric), transparent 70%); top:-160px; left:-140px; animation: float1 22s ease-in-out infinite; }
+  .blob.b2{ width:480px; height:480px; background:radial-gradient(circle, var(--violet), transparent 70%); top:20%; right:-180px; animation: float2 26s ease-in-out infinite; }
+  .blob.b3{ width:420px; height:420px; background:radial-gradient(circle, var(--magenta), transparent 70%); bottom:-120px; left:15%; animation: float3 24s ease-in-out infinite; }
+  .blob.b4{ width:380px; height:380px; background:radial-gradient(circle, var(--amber), transparent 70%); bottom:10%; right:8%; opacity:.35; animation: float1 30s ease-in-out infinite reverse; }
+  @keyframes float1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(60px,40px); } }
+  @keyframes float2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-50px,60px); } }
+  @keyframes float3{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(40px,-50px); } }
+  .grain{ position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.03;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1,h2,h3{ font-family:var(--display); font-weight:800; letter-spacing:-.02em; }
+  h2{ font-size:clamp(30px,4.2vw,44px); margin-bottom:48px; }
+  .grad-text{
+    background:linear-gradient(90deg, var(--electric), var(--violet) 55%, var(--magenta));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--amber); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{ content:''; width:20px; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--electric),var(--amber)); }
+
+  /* ---------- glass utility ---------- */
+  .glass{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+  }
+
+  /* ---------- NAV ---------- */
+  header{ position:fixed; top:16px; left:0; right:0; z-index:100; display:flex; justify-content:center; }
+  nav{
+    width:calc(100% - 32px); max-width:1080px; margin:0 auto; padding:12px 22px;
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(18,15,40,0.55); border:1px solid var(--glass-border); border-radius:100px;
+    backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+  }
+  .logo{ font-family:var(--display); font-weight:700; font-size:15px; }
+  .logo span{ background:linear-gradient(90deg,var(--electric),var(--magenta)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .nav-links{ display:flex; gap:8px; font-family:var(--mono); font-size:13px; }
+  .nav-links a{ color:var(--text-dim); transition:.2s; padding:8px 14px; border-radius:100px; }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--text); background:var(--glass-strong); }
+  .nav-toggle{ display:none; background:var(--glass-strong); border:1px solid var(--glass-border); color:var(--text); width:38px; height:38px; border-radius:50%; cursor:pointer; }
+  @media (max-width: 700px){
+    .nav-links{
+      position:fixed; top:74px; left:16px; right:16px; flex-direction:column; padding:16px; gap:6px;
+      background:rgba(18,15,40,0.85); border:1px solid var(--glass-border); border-radius:20px;
+      backdrop-filter:blur(20px); transform:translateY(-140%); opacity:0; transition:transform .3s ease, opacity .3s ease;
+    }
+    .nav-links.open{ transform:translateY(0); opacity:1; }
+    .nav-links a{ text-align:center; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding-top:140px; }
+  .hero-name{ font-size:clamp(42px,8vw,80px); line-height:1.02; margin-bottom:16px; }
+  .hero-role{ font-family:var(--sans); font-size:clamp(16px,2.2vw,19px); color:var(--text-dim); max-width:600px; margin-bottom:36px; }
+  .scope{ width:100%; max-width:760px; height:150px; margin:6px 0 40px; border-radius:var(--radius); padding:14px 8px; }
+  .scope path.trace{
+    fill:none; stroke:url(#traceGrad); stroke-width:2.5; stroke-linecap:round;
+    filter: drop-shadow(0 0 8px rgba(0,229,255,0.5));
+    stroke-dasharray: 900; stroke-dashoffset:900;
+    animation: draw 2.6s ease-out forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .scope-grid line{ stroke:rgba(255,255,255,0.08); stroke-width:1; }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--mono); font-size:13px; padding:14px 26px; border-radius:100px;
+    border:1px solid transparent; color:#04070f; transition:all .25s; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    background:linear-gradient(90deg, var(--electric), var(--violet));
+    box-shadow:0 8px 24px rgba(0,229,255,0.25);
+  }
+  .btn:hover, .btn:focus-visible{ transform:translateY(-2px); box-shadow:0 12px 30px rgba(169,112,255,0.35); }
+  .btn.ghost{
+    background:var(--glass-strong); color:var(--text); border:1px solid var(--glass-border); box-shadow:none;
+  }
+  .btn.ghost:hover{ border-color:var(--amber); color:var(--amber); }
+
+  /* ---------- component divider ---------- */
+  .divider{ display:flex; align-items:center; gap:12px; max-width:1080px; margin:0 auto; padding:0 24px; position:relative; z-index:2; }
+  .divider .line{ flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--glass-border), transparent); }
+  .divider .dot{ width:6px; height:6px; border-radius:50%; background:linear-gradient(90deg,var(--electric),var(--magenta)); box-shadow:0 0 10px var(--electric); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:230px 1fr; gap:48px; align-items:start; }
+  .photo-frame{
+    aspect-ratio:1; border-radius:var(--radius); position:relative; overflow:hidden;
+    background:linear-gradient(155deg, rgba(0,229,255,0.18), rgba(169,112,255,0.18));
+  }
+  .photo-frame::after{
+    content:'JK'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--display); font-size:48px; font-weight:800; color:rgba(255,255,255,0.85);
+  }
+  .about p{ color:var(--text-dim); margin-bottom:16px; max-width:62ch; }
+  .about strong{ color:var(--text); font-weight:600; }
+  .stat-row{ display:flex; gap:36px; margin-top:28px; flex-wrap:wrap; }
+  .stat{ font-family:var(--mono); }
+  .stat b{ display:block; font-size:28px; background:linear-gradient(90deg,var(--electric),var(--lime)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .stat span{ font-size:12px; color:var(--text-dim); }
+  @media (max-width:640px){ .about-grid{ grid-template-columns:1fr; } .photo-frame{ width:150px; } }
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+  .skill-card{ padding:26px; position:relative; overflow:hidden; transition:transform .25s, border-color .25s; }
+  .skill-card:hover{ transform:translateY(-4px); border-color:var(--card-accent, var(--electric)); }
+  .skill-card::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--card-accent, var(--electric));
+  }
+  .skill-card.c1{ --card-accent: var(--electric); }
+  .skill-card.c2{ --card-accent: var(--violet); }
+  .skill-card.c3{ --card-accent: var(--magenta); }
+  .skill-card h3{ font-family:var(--mono); font-size:13px; color:var(--card-accent); margin-bottom:16px; letter-spacing:.06em; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-family:var(--mono); font-size:12px; padding:7px 14px; border-radius:100px;
+    border:1px solid var(--glass-border); color:var(--text-dim); background:rgba(255,255,255,0.03);
+    transition:.2s;
+  }
+  .skill-card:hover .chip{ color:var(--text); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+  .project-card{
+    position:relative; padding:28px; transition:transform .25s, box-shadow .25s;
+  }
+  .project-card:hover{ transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.4); }
+  .project-card .tag{
+    font-family:var(--mono); font-size:11px; margin-bottom:14px; display:inline-block;
+    padding:4px 12px; border-radius:100px; color:#04070f; font-weight:600;
+  }
+  .project-card.p1 .tag{ background:linear-gradient(90deg,var(--electric),#7de6ff); }
+  .project-card.p2 .tag{ background:linear-gradient(90deg,var(--amber),#ffd58a); }
+  .project-card.p3 .tag{ background:linear-gradient(90deg,var(--lime),#c7ffdf); }
+  .project-card.p4 .tag{ background:linear-gradient(90deg,var(--magenta),#ff9fdd); }
+  .project-card h3{ font-size:18px; margin-bottom:8px; color:var(--text); }
+  .project-card p{ color:var(--text-dim); font-size:14px; margin-bottom:18px; }
+  .project-links{ display:flex; gap:18px; font-family:var(--mono); font-size:12px; }
+  .project-links a{ color:var(--text-dim); border-bottom:1px solid transparent; }
+  .project-links a:hover{ color:var(--electric); border-color:var(--electric); }
+
+  /* ---------- EDUCATION / TIMELINE ---------- */
+  .timeline{ position:relative; padding-left:36px; }
+  .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(180deg, var(--electric), var(--violet), var(--magenta)); border-radius:2px; }
+  .t-item{ position:relative; padding-bottom:40px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-36px; top:4px; width:13px; height:13px; border-radius:50%;
+    background:var(--bg-0); border:2px solid var(--electric); box-shadow:0 0 12px rgba(0,229,255,0.6);
+  }
+  .t-year{ font-family:var(--mono); font-size:12px; color:var(--amber); }
+  .t-item h3{ font-size:18px; margin:4px 0 6px; }
+  .t-item p{ color:var(--text-dim); font-size:14px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+  .contact-card{
+    padding:22px; display:flex; flex-direction:column; gap:6px; transition:transform .2s, border-color .2s;
+  }
+  .contact-card:hover{ transform:translateY(-3px); border-color:var(--electric); }
+  .contact-card .label{ font-family:var(--mono); font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; }
+  .contact-card .value{ font-size:15px; color:var(--text); word-break:break-word; }
+
+  footer{ text-align:center; padding:44px 24px; font-family:var(--mono); font-size:12px; color:var(--text-dim); position:relative; z-index:2; }
+  footer span{ background:linear-gradient(90deg,var(--electric),var(--magenta)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+  @media (prefers-reduced-motion: reduce){
+    .scope path.trace{ animation:none; stroke-dashoffset:0; }
+    .blob{ animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mesh" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <nav>
+    <div class="logo">EE<span>_</span>electrical engineers</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">≡</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Electrical Engineering Student</div>
+    <h1 class="hero-name">JASHINDER <span class="grad-text">KUMAR</span></h1>
+    <p class="hero-role">I design and build circuits, embedded systems, and power electronics — turning signals into working hardware. Currently in my 3rd year, looking for internships in embedded systems and power electronics.</p>
+
+    <svg class="scope glass" viewBox="0 0 720 140" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="traceGrad" x1="0" y1="0" x2="720" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#00e5ff"/>
+          <stop offset="50%" stop-color="#a970ff"/>
+          <stop offset="100%" stop-color="#ff4fc3"/>
+        </linearGradient>
+      </defs>
+      <g class="scope-grid">
+        <line x1="0" y1="35" x2="720" y2="35"></line>
+        <line x1="0" y1="70" x2="720" y2="70"></line>
+        <line x1="0" y1="105" x2="720" y2="105"></line>
+        <line x1="120" y1="0" x2="120" y2="140"></line>
+        <line x1="240" y1="0" x2="240" y2="140"></line>
+        <line x1="360" y1="0" x2="360" y2="140"></line>
+        <line x1="480" y1="0" x2="480" y2="140"></line>
+        <line x1="600" y1="0" x2="600" y2="140"></line>
+      </g>
+      <path class="trace" d="M0,70 L60,70 L80,20 L100,120 L120,70 L180,70 C200,70 200,20 220,20 C240,20 240,120 260,120 C280,120 280,70 300,70 L400,70 L420,20 L440,120 L460,70 L520,70 C540,70 540,20 560,20 C580,20 580,120 600,120 C620,120 620,70 640,70 L720,70"></path>
+    </svg>
+
+    <div class="hero-cta">
+      <a class="btn" href="#projects">View Projects</a>
+      <a class="btn ghost" href="/resume.pdf" download>Download Résumé</a>
+      <a class="btn ghost" href="#contact">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dot"></div><div class="line"></div></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">01 — About</div>
+    <h2>Signal <span class="grad-text">&gt;</span> noise</h2>
+    <div class="about-grid">
+      <div class="photo-frame glass"></div>
+      <div class="about">
+        <p>I'm an <strong>Electrical Engineering student</strong> focused on the space between theory and hardware — circuit design, microcontrollers, and power systems. I like projects that start on a breadboard and end up doing something useful in the real world.</p>
+        <p>Outside coursework, I've built <strong>embedded systems projects</strong>, contributed to a <strong>college robotics team</strong>, and I'm currently learning <strong>PCB design</strong> and <strong>power electronics</strong> in more depth.</p>
+        <div class="stat-row">
+          <div class="stat"><b>8+</b><span>Projects built</span></div>
+          <div class="stat"><b>3rd</b><span>Year of study</span></div>
+          <div class="stat"><b>4</b><span>Tools mastered</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dot"></div><div class="line"></div></div>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">02 — Skills</div>
+    <h2>Tools of the <span class="grad-text">trade</span></h2>
+    <div class="skill-groups">
+      <div class="skill-card glass c1">
+        <h3>CIRCUIT DESIGN</h3>
+        <div class="chip-row">
+          <span class="chip">Analog Circuits</span>
+          <span class="chip">Digital Logic</span>
+          <span class="chip">PCB Layout</span>
+          <span class="chip">KiCad</span>
+          <span class="chip">Multisim</span>
+        </div>
+      </div>
+      <div class="skill-card glass c2">
+        <h3>EMBEDDED &amp; CODE</h3>
+        <div class="chip-row">
+          <span class="chip">C / C++</span>
+          <span class="chip">Arduino</span>
+          <span class="chip">STM32</span>
+          <span class="chip">Python</span>
+          <span class="chip">MATLAB</span>
+        </div>
+      </div>
+      <div class="skill-card glass c3">
+        <h3>LAB &amp; SIMULATION</h3>
+        <div class="chip-row">
+          <span class="chip">Oscilloscope</span>
+          <span class="chip">LTspice</span>
+          <span class="chip">Multimeter</span>
+          <span class="chip">Signal Generators</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dot"></div><div class="line"></div></div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">03 — Projects</div>
+    <h2>Selected <span class="grad-text">work</span></h2>
+    <div class="project-grid">
+      <div class="project-card glass p1">
+        <span class="tag">Embedded Systems</span>
+        <h3>Line-Following Robot</h3>
+        <p>Autonomous robot using IR sensor arrays and a PID control loop on an Arduino Uno, tuned for stable tracking at higher speeds.</p>
+        <div class="project-links">
+          <a href="#">GitHub →</a>
+          <a href="#">Write-up →</a>
+        </div>
+      </div>
+      <div class="project-card glass p2">
+        <span class="tag">Power Electronics</span>
+        <h3>Solar MPPT Charge Controller</h3>
+        <p>Buck converter with a Perturb &amp; Observe MPPT algorithm to improve solar panel energy harvest, simulated in LTspice and built on a prototype board.</p>
+        <div class="project-links">
+          <a href="#">GitHub →</a>
+          <a href="#">Write-up →</a>
+        </div>
+      </div>
+      <div class="project-card glass p3">
+        <span class="tag">IoT</span>
+        <h3>Home Automation Hub</h3>
+        <p>ESP32-based system controlling lights and appliances over Wi-Fi, with a small React dashboard and MQTT messaging.</p>
+        <div class="project-links">
+          <a href="#">GitHub →</a>
+          <a href="#">Demo →</a>
+        </div>
+      </div>
+      <div class="project-card glass p4">
+        <span class="tag">Analog Design</span>
+        <h3>Audio Amplifier PCB</h3>
+        <p>Class AB amplifier designed and routed in KiCad, from schematic to fabricated two-layer board, with measured THD results.</p>
+        <div class="project-links">
+          <a href="#">GitHub →</a>
+          <a href="#">Write-up →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dot"></div><div class="line"></div></div>
+
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow">04 — Education</div>
+    <h2>Timeline</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-year">2026 — Present</div>
+        <h3>B.Tech in Electrical Engineering</h3>
+        <p>ROHTAK University MDU — Currently pursuing, building on diploma-level foundations in circuit theory, power systems, and control systems.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">Completed 2026</div>
+        <h3>Diploma in Electrical Engineering</h3>
+        <p>Govt Polytechnic College Jammu — Core coursework in electrical machines, circuit design, and power systems fundamentals.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">10th Grade</div>
+        <h3>Secondary School</h3>
+        <p>Bal Bharti Public High School, Jammu — Secondary education.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dot"></div><div class="line"></div></div>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">05 — Contact</div>
+    <h2>Let's <span class="grad-text">connect</span></h2>
+    <div class="contact-grid">
+      <div class="contact-card glass">
+        <span class="label">Email</span>
+        <a class="value" href="mailto:jashinderkumar@gmail.com">jashinderkumar@gmail.com</a>
+      </div>
+      <div class="contact-card glass">
+        <span class="label">LinkedIn</span>
+        <a class="value" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a>
+      </div>
+      <div class="contact-card glass">
+        <span class="label">GitHub</span>
+        <a class="value" href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a>
+      </div>
+      <div class="contact-card glass">
+        <span class="label">Phone</span>
+        <a class="value" href="tel:+910000000000">+91 00000 00000</a>
+      </div>
+      <div class="contact-card glass">
+        <span class="label">Location</span>
+        <span class="value">Jammu, Jammu &amp; Kashmir, India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 JASHINDER KUMAR — Built <span>DIFFERENT</span>.</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
