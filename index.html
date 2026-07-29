@@ -75,6 +75,12 @@
     color:var(--amber); display:flex; align-items:center; gap:10px; margin-bottom:18px;
   }
   .eyebrow::before{ content:''; width:20px; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--electric),var(--amber)); }
+  .eyebrow.role{
+    font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.04em;
+    padding:8px 16px 8px 6px; border-radius:100px; background:var(--glass-strong); border:1px solid var(--glass-border);
+    width:fit-content; color:var(--text);
+  }
+  .eyebrow.role::before{ width:8px; height:8px; border-radius:50%; background:linear-gradient(90deg,var(--electric),var(--amber)); box-shadow:0 0 8px var(--electric); }
 
   /* ---------- glass utility ---------- */
   .glass{
@@ -215,6 +221,43 @@
   .t-item h3{ font-size:18px; margin:4px 0 6px; }
   .t-item p{ color:var(--text-dim); font-size:14px; }
 
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; }
+  .cert-card{ perspective:1400px; height:260px; cursor:pointer; }
+  .cert-card-inner{
+    position:relative; width:100%; height:100%; transition:transform .6s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .cert-card.flipped .cert-card-inner, .cert-card:hover .cert-card-inner{ transform:rotateY(180deg); }
+  .cert-face{
+    position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    border-radius:var(--radius); padding:28px; display:flex; flex-direction:column;
+  }
+  .cert-front{ justify-content:space-between; }
+  .cert-back{ transform:rotateY(180deg); justify-content:center; gap:10px; }
+  .cert-icon{
+    width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    font-size:20px; margin-bottom:auto;
+  }
+  .cert-card.k1 .cert-icon{ background:linear-gradient(135deg,var(--electric),var(--violet)); }
+  .cert-card.k2 .cert-icon{ background:linear-gradient(135deg,var(--amber),var(--magenta)); }
+  .cert-front h3{ font-size:18px; margin-top:14px; }
+  .cert-front .cert-org{ color:var(--text-dim); font-size:13px; margin-top:4px; }
+  .cert-duration{
+    font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--card-accent, var(--electric)); display:inline-flex; align-items:center; gap:6px; width:fit-content;
+    padding:5px 12px; border-radius:100px; border:1px solid var(--glass-border); margin-top:16px;
+  }
+  .cert-card.k1{ --card-accent: var(--electric); }
+  .cert-card.k2{ --card-accent: var(--amber); }
+  .cert-back h4{ font-family:var(--display); font-size:15px; color:var(--card-accent); text-align:center; }
+  .cert-back p{ color:var(--text-dim); font-size:13.5px; text-align:center; max-width:34ch; margin:0 auto; }
+  .cert-hint{ font-family:var(--mono); font-size:10.5px; color:var(--text-dim); text-align:center; margin-top:auto; opacity:.7; }
+  @media (hover:none){
+    .cert-card:hover .cert-card-inner{ transform:none; }
+    .cert-hint::after{ content:' · tap to flip'; }
+  }
+
   /* ---------- CONTACT ---------- */
   .contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
   .contact-card{
@@ -253,6 +296,7 @@
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -260,7 +304,7 @@
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow">Electrical Engineering Student</div>
+    <div class="eyebrow role">Electrical Engineering Student</div>
     <h1 class="hero-name">JASHINDER <span class="grad-text">KUMAR</span></h1>
     <p class="hero-role">I design and build circuits, embedded systems, and power electronics — turning signals into working hardware. Currently in my 3rd year, looking for internships in embedded systems and power electronics.</p>
 
@@ -429,9 +473,54 @@
 
 <div class="divider" aria-hidden="true"><div class="dot"></div><div class="line"></div></div>
 
+<section id="certifications">
+  <div class="wrap">
+    <div class="eyebrow">05 — Certifications</div>
+    <h2>Hands-on <span class="grad-text">training</span></h2>
+    <div class="cert-grid">
+      <div class="cert-card k1" tabindex="0" role="button" aria-label="Flip to see details of Grid Station internship">
+        <div class="cert-card-inner">
+          <div class="cert-face cert-front glass">
+            <div class="cert-icon">⚡</div>
+            <div>
+              <h3>Grid Station Internship</h3>
+              <div class="cert-org">Gladni Grid Station, Narwal</div>
+            </div>
+            <span class="cert-duration">◆ 4 Week Internship</span>
+          </div>
+          <div class="cert-face cert-back glass">
+            <h4>What it covered</h4>
+            <p>Hands-on exposure to substation operations, switchgear, transformers, and grid protection systems at the Gladni Grid Station, Narwal.</p>
+            <span class="cert-hint">Hover to flip back</span>
+          </div>
+        </div>
+      </div>
+      <div class="cert-card k2" tabindex="0" role="button" aria-label="Flip to see details of Solar Power Technologies training">
+        <div class="cert-card-inner">
+          <div class="cert-face cert-front glass">
+            <div class="cert-icon">☀</div>
+            <div>
+              <h3>Solar Power Technologies</h3>
+              <div class="cert-org">Certified Training Program</div>
+            </div>
+            <span class="cert-duration">◆ 4 Week Training</span>
+          </div>
+          <div class="cert-face cert-back glass">
+            <h4>What it covered</h4>
+            <p>Solar PV system design, panel sizing, charge controllers, and inverter setup — building on the MPPT project experience.</p>
+            <span class="cert-hint">Hover to flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><div class="dot"></div><div class="line"></div></div>
+
 <section id="contact">
   <div class="wrap">
-    <div class="eyebrow">05 — Contact</div>
+    <div class="eyebrow">06 — Contact</div>
     <h2>Let's <span class="grad-text">connect</span></h2>
     <div class="contact-grid">
       <div class="contact-card glass">
@@ -471,6 +560,17 @@
     links.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
   }));
+
+  // Certification cards: tap or Enter/Space to flip (in addition to hover on desktop)
+  document.querySelectorAll('.cert-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    card.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        card.classList.toggle('flipped');
+      }
+    });
+  });
 </script>
 
 </body>
