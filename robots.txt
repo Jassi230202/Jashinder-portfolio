@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jassi230202.github.io/Jashinder-portfolio/sitemap.xml
